@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kabiranjan Saikia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Playfair Display', serif;
+            scroll-behavior: smooth;
+        }
+
+
+
+        .navbar {
+            position: fixed;
+            top: 20px; 
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(15px);
+            transition: 0.3s ease-in-out;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 50px;
+        }
+
+        .navbar .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1e4497;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff4d4d;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.9);
+                text-align: center;
+                padding: 1rem 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+        }
+
+        .hero {
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: url('https://www.tourmyindia.com/blog//wp-content/uploads/2022/04/Best-Places-to-Visit-in-North-East-India.jpg') no-repeat center center/cover;
+            color: white;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            background: rgba(0, 0, 0, 0.75);
+            padding: 30px;
+            border-radius: 12px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        .content-container {
+            display: flex;
+            max-width: 1100px;
+            margin: 3rem auto;
+            gap: 20px;
+        }
+
+        .article-container {
+            flex: 3;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.8s ease-in-out;
+        }
+
+        .article-container h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #1e4497;
+        }
+
+        .article-meta {
+            font-size: 1rem;
+            color: #777;
+            margin-bottom: 1.5rem;
+        }
+
+        .hook {
+            font-style: italic;
+            font-size: 1.4rem;
+            color: #444;
+            margin-bottom: 2rem;
+            padding-left: 15px;
+            border-left: 4px solid #ff4d4d;
+        }
+
+        .article-container img {
+            width: 100%;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .article-container p {
+            text-align: justify; 
+            line-height: 1.8; 
+            margin-bottom: 1.5rem; 
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 80px;
+            width: 280px;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .read-aloud {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .read {
+            background: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 12px 15px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .read:hover {
+            background: #d43f3f;
+        }
+
+        .adspace {
+            text-align: center;
+            background: #f8f9fb;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .adspace h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #1e4497;
+        }
+
+        .adspace p {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .contact-ad {
+            display: inline-block;
+            background: #1e4497;
+            color: white;
+            padding: 8px 12px;
+            font-size: 0.9rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .contact-ad:hover {
+            background: #153470;
+        }
+
+
+        .background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        .background-animation {
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 2000; 
+            pointer-events: none; 
+        }
+
+        .background-animation span {
+            position: absolute;
+            display: block;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 0, 150, 0.5);
+            border-radius: 50%;
+            animation: pourEffect 10s linear infinite;
+            opacity: 10000;
+        }
+
+        @keyframes pourEffect {
+            0% {
+                transform: translateY(-100vh) scale(0.5);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none; 
+                position: fixed;
+                right: 0;
+                top: 80px;
+                width: 250px;
+                z-index: 999;
+                box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.2);
+            }
+            
+            .sidebar.show {
+                display: block;
+            }
+
+            .sidebar-toggle {
+                display: block; 
+            }
+        }
+
+        .button {
+            padding: 10px 15px;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .read {
+            background: #1e4497;
+        }
+
+        .read:hover {
+            background: #163374;
+        }
+
+        .sidebar {
+            flex: 1;
+            position: sticky;
+            top: 100px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .progress-ring {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: conic-gradient(#ff4d4d 0% 0%, #ddd 0% 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .share-button {
+            padding: 10px 15px;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+
+        .fb { background: #1877f2; }
+        .tw { background: #1da1f2; }
+        .email { background: #ea4335; }
+
+        .back-button {
+            display: block;
+            text-align: center;
+            background: #ff4d4d;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 30px;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Vanguards of Wesea</div>
+        <div class="menu-toggle">☰</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#stories">Stories</a></li>
+            <li><a href="#contact">About</a></li>
+        </ul>
+    </nav>
+
+    <div class="background-animation"></div>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>For a United Wesea</h1>
+            <p>"One voice can make a difference, and together, we create an impact."</p>
+        </div>
+    </section>
+
+    <div class="content-container">
+        <div class="article-container">
+            <h2>A Rebel's Ink</h2>
+            <p class="article-meta">By <strong>Kiron Chemsong</strong> • February 10, 2025</p>
+
+            <p class="hook">maybe you don’t know how in a frail moment, my banned autobiography I handed over to my lover in secret and yet</p>
+            <p class="hook">my lover who’d been raped at your hands, to hold her hands I haven’t had the time in forty-four years</p>
+            <p class="hook">at least, for my patient mother biding the triumphant moment of my return alone</p>
+            
+            <p class="hook">I’ll have to remain alive</p>
+            <p> <strong>A dull restraint, by Kabiranjan</strong>;
+                <em>taken from the book “Ekhon nisxiddho atmojiiwoniir poraa”</em></p>
+            <img src="https://i0.wp.com/raiot.in/wp-content/uploads/2020/05/100757710_263413424775177_8294107191795777536_n.jpg?resize=720%2C960&ssl=1" alt="Changemaker Image">
+            <p>In the sun-kissed village of Khutikata, Nagaon nestled amidst the emerald brahmaputra river, Kabiranjan Saikia first opened his eyes to the world- a world that was still uder the arms of an oppressive regime, in 1975. Born as the only child to Renu and Hem Saikia, from his earliest days, Kabiranjan’s eyes were alight with curiosity and his heart brimming with love for his homeland- the land that birthed him. In the golden light of dawn, he would wander along the riverbanks, his tiny feet tracing patterns in the soft earth, his laughter mingling with the songs of birds. However, then little did many know about what he was destined for, since beneath this innocence, were the seeds of a soul destined for greatness, and a heart ablaze with the fervor of patriotism.</p>
+            <p>Even as a child, Kabiranjan displayed a remarkable unmattched intellect and a passion for justice that belied his tender age. As a Class 5 student, his inquisitive mind eagerly absorbed the lessons of the world, and the tales of the assamese & wesean resilience, against foreign rule. Then he spoke about the beauty of Bohag, glorified the
+                spirit embodied by the likes of Lachit Borphukan and Joymoti and dreamt of becoming a great
+                personality. His teachers at school too, marveled at his insatiable thirst for knowledge and his
+                passion for writing. It was then, during these formative years that Kabiranjan's pen first dipped
+                into the ink of what awaited him, weaving the tales of bravery and defiance that captured the
+                hearts of all who read them. At the tender age of twelve, he penned his first eye-catching piece,
+                “Aai matri Assam” a poignant reflection on the beauty of his beloved Assam, infused with the
+                spirit of a poet wise beyond his years. It was not merely ink on paper; it was a mirror reflecting
+                the turmoil of a soul torn by the conflicts of existence. Humanity and inner turmoil intertwined in
+                his verses, each word a reflecting his later years as a poet trapped in a patriot’s body</p>
+            <p>As the years unfurled like petals in the wind, this child’s dreams grew wings, soaring high above the emerald canopy of his childhood home, Wesea & Assam. He stood as a voice for the voiceless, championing the cause of the oppressed and downtrodden with unwavering determination. It was during these days that ULFA or the United Liberation Front of Assam, was at its peak, as the outfit demanded, “Swadhin Axom” or Independent Assam. These sentiments at that point, was widely popular among the assamese as well as northeastern natives, as they felt that India was treating Assam, and the wider northeast, as a colony for resources. This step motherly treatment was also evident, as India began settling in Bengali immigrants following the Bangladeshi liberation war, threating the identity of the masses in the region. Many assamese organisations got involved, including various student bodies, and this is what birthed the extremist ULFA. With each year, and each assault on the people of the northeast, by the Indian Armed forces- that was known for its brutality and and for targetting random civillians, the young Kabiranjan’s struggle against oppression and his love for his motherland, brought him increasingly close to this armed struggle. However, what many don’t know is that this child was neither a soldier nor one who called for a military solution. Despite the prevailing climate of fear and silence surrounding the ULFA, Kabiranjan exhibited an unparalleled spirit of courage and defiance. He penned an article in Ganatantra, sharply critical of the outfit, during a time when the mere mention of dissent against the ULFA was met with trepidation. In the year 1991, amidst the echoes of dissent, he took to the streets, bearing black flags in protest against the visit of the Governor of Assam to Nagaon. This was also a time, when religious turmoil was at its peak in India, when Hindu Nationalists had demolished the controversial Babri Majid. Kabiranjan however did not remain silent then. In the hallowed pages of Assam's premier journal, Prantik, he penned his words, advocating not for the desecration of mosques, but for the construction of temples in the form of hospitals. In his vision, true temples would stand as bastions of healing, serving the needs of both Muslim and Hindu alike. When his uncle confronted him, wielding a menacing stick, questioning the authorship of the articles he claimed as his own, Kabiranjan's resolve only grew stronger. Rather than succumbing to intimidation, he found renewed determination to amplify his voice. At this point, Kabirajan was merely in middle school, but yet had a clear vision for the future of Assam, and Wesea as a whole. His dream was to one day set up the largest library in Northeast, and ensuring that the next generation of pioneers came from this soil. He also actively pushed for brotherhood among various religious and ethnicities of Wesea</p>
+            <p>Behind this every stroke of his pen and the quiet corners of their home, his words found flight,
+                carried forth by the hands of familial love and solidarity. Within the sanctum of his family,
+                judgment found no harbor, for they recognized in Kabiranjan a soul guided by principles, and
+                urtured by virtue, for they raised him not merely to abide by the dictates of society, but to stand
+                resolute in the pursuit of what was right, what was just.</p>
+                <p>However, with every step he took towards freedom, Kabiranjan found himself increasingly
+                    ensnared in the growing web of conflict and turmoil that plagued his beloved land. The tag of
+                    being an "over-ground worker of Ulfa" was thrust upon him, branding him as a pariah in the eyes
+                    of those who sought to silence the voices of dissent. In 1993 while completing his BA from
+                    Nagaon College, he had formally joined the Manab Adhikar Sangram Samity, an organisation
+                    formed by the journalists of Assam, to protect and promote of human rights both civil and
+                    political. It was also one of the few organisations, that had challenged the alleged human rights
+                    violations in Assam by the Indian Army, paramilitary forces and state police. It was maybe due
+                    to this, that the Indian Government had declared him an ULFA member in the very same year.
+                    This rather than deterring Kabiranjan, further pushed him to join the outfit, and also rose up the
+                    ranks to be the, “Assistant Publicity Secretary”. During this time with the outfit, he wrote
+                    countless pieces, inspiring wesean and assamese nationalism, alongside also sharing his
+                    stories of spending countless sleepless nights in the jungles or taking shelter in unknown homes
+                    around assam, as he avoided being caught by the authorities of the Government of India. It was
+                    he, who had also taken the initiative to work and develop, the ULFA mouthpiece, “Swadintha”,
+                    as he spoke against the injustices the people of wesea faced under India. Even though, he
+                    never called for violence, and was strongly against any form of bloodshed, be became a top
+                    target for India- a person who had to be eliminated, executed and silenced at all cost. Death
+                    therefore loomed close to him.
+                    </p>
+                    <p>During this period, was when Kabiranjan Saikia assumed the alias of “Swadhinata Phukon”,
+                        emblematic of his commitment to the cause of liberation. Tragically however, it was on the
+                        fateful night of May 26, 2000, that his life was abruptly extinguished, denied the fundamental
+                        right to a fair trial, thereby flagrantly contravening established norms of international human
+                        rights law as well as domestic statutes safeguarding the rights of individuals.</p>
+                        <p>During the time of the death, Kabiranjan was taking refuge in the official quarter of a lady doctor,
+                            and was apprehended by the police, blindfolded and handcuffed, before being whisked away
+                            and shot point blank, at the orders of district Superintendent of Police, Sri G P Singh, a man
+                            known to have killed countless civillians including children- yet he was never charged by the
+                            Indian machinary. Witnesses attest that in the final moments before his life was unjustly
+                            extinguished, Saikia met the gaze of those who sought to silence him, defiantly proclaiming his
+                            innocence and reaffirming his unyielding commitment to the cause he believed in. Despite the
+                            imminent threat to his life and the overwhelming odds stacked against him, Saikia's spirit
+                            remained unbroken, his resolve undiminished by the specter of death looming large. Even after
+                            extinguishing his life, the government of India, through the hastened cremation of Phukon's
+                            mortal remains by the Nagaon district administration, sought to erase any lingering traces of his
+                            existence. The lack of customary rites and observances surrounding his cremation, of the hindu faith that he belonged to, underscores the palpable apprehension gripping the authorities,
+                            revealing their fear of the simmering discontent among the masses and their desperate attempt
+                            to quell any potential unrest. This hurried disposal of his remains serves as a stark reminder of
+                            the lengths to which those in power will go to suppress dissent and silence voices of opposition.
+                            It speaks volumes about the prevailing atmosphere of fear and intimidation, where even in
+                            death, individuals like Phukon are denied the dignity and respect they deserve.</p>
+                <p>At first, the government of India, also tried, projecting Saikia as nothing but a mere
+                    terrorist/mafia head, by propagating a narrative asserts that he met his end in an encounter,
+                    wherein he purportedly opened fire upon a security patrol that intercepted him while he was
+                    traversing on a bicycle. However, such assertions face stark challenge from the local populace,
+                    as well as the evidences that emerged later on to contest the official version vehemently. This
+                    was also proven, by the council set up by the late chief minister Tarun Gogoi- however even
+                    after that later on, the government in New Delhi, declared any investigations into the case as
+                    illegal.
+                    </p>
+                <p>The way Saikia was killed, goes on to violate every law of basic human rights, enchrined by
+                    international bodies like the UN. The Universal Declaration of Human Rights, a seminal
+                    document enshrinies the inalienable rights of all human beings, unequivocally affirms the right to
+                    life, liberty, and security of person (Article 3). Additionally, it upholds the principle of equality
+                    before the law, emphasizing the right to a fair and public hearing by an impartial tribunal in the
+                    determination of one's rights and obligations (Article 10). If India, truly claims Weseans as
+                    Indians, and not as secondary subjects, then too, many rights underlined by the indian
+                    constitution was denied to Saikia. For instance, in India, the Constitution guarantees the right to
+                    life and personal liberty under Article 21, thereby obligating the State to uphold these rights and
+                    ensure that no person is deprived of life or personal liberty except in accordance with the
+                    procedure established by law. Kabiranjan’s death therefore, epitomizes the grim reality of
+                    extrajudicial executions plaguing regions marred by insurgency.
+                    </p>
+            <p>Despite the efforts of the government of India to erase his memory, Phukon's legacy continues
+                to live on in the hearts of every wesean and every assamese, serving as a rallying cry for those
+                who continue to fight against injustice and oppression of indigenous communities around the
+                world.</p>
+
+                <p>In Saikia’s own words in his poem Kiman Xomoi Teo Nirobe Kotaisil Prarthonagharat (How
+                    much time he spent in solitude in the prayer room), he quoted <strong>“Everybody thinks that we
+                        revolutionaries live without emotion/that is why those who pretend taking advantage of our
+                        simplicity/and wish for our painful days/never regret”</strong> </p>
+            <div class="share-buttons">
+                <button class="share-button fb" onclick="shareOnFacebook()">📘</button>
+                <button class="share-button tw" onclick="shareOnTwitter()">🐦</button>
+                <button class="share-button email" onclick="shareViaEmail()">📧</button>
+            </div>
+            <a href="stories.html" class="back-button">← Back to Stories</a>
+        </div>
+
+        <aside class="sidebar">
+            <div class="read-aloud">
+                <button class="button read" onclick="speakArticle()">🔊 Read Aloud</button>
+            </div>
+        
+            <div class="adspace">
+                <h3>📢 Advertise with Us</h3>
+                <p>Want to showcase your brand to an engaged audience?  
+                   Contact us for ad placements.</p>
+                <a href="mailto:ads@weseantimes.com" class="contact-ad">📩 Contact Us</a>
+            </div>
+        </aside>        
+
+        <div class="progress-ring" id="progressRing">0%</div>
+    </div>
+
+    <script>
+
+        function speakArticle() {
+            let speech = new SpeechSynthesisUtterance(document.querySelector('.article-container').innerText);
+            speechSynthesis.speak(speech);
+        }
+
+        function updateProgress() {
+            let scrollTop = window.scrollY;
+            let docHeight = document.body.scrollHeight - window.innerHeight;
+            let scrollPercent = Math.round((scrollTop / docHeight) * 100);
+            document.getElementById('progressRing').textContent = scrollPercent + "%";
+            document.getElementById('progressRing').style.background = `conic-gradient(#ff4d4d ${scrollPercent}%, #ddd ${scrollPercent}% 100%)`;
+        }
+
+        function shareOnFacebook() {
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}`, '_blank');
+        }
+
+        function shareOnTwitter() {
+            window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}`, '_blank');
+        }
+
+        function shareViaEmail() {
+            window.location.href = `mailto:?subject=Check out this article&body=${encodeURIComponent(window.location.href)}`;
+        }
+
+        window.addEventListener('scroll', updateProgress);
+            document.addEventListener("DOMContentLoaded", function () {
+            const menuToggle = document.querySelector(".menu-toggle");
+            const navLinks = document.querySelector(".nav-links");
+
+            menuToggle.addEventListener("click", function () {
+                navLinks.classList.toggle("active");
+            });
+        });
+        function createAnimation() {
+            const animationContainer = document.querySelector('.background-animation');
+            for (let i = 0; i < 80; i++) {
+                let span = document.createElement('span');
+                let size = Math.random() * 15 + 5;
+                let duration = Math.random() * 5 + 2;
+                let posX = Math.random() * 100;
+                
+                span.style.width = `${size}px`;
+                span.style.height = `${size}px`;
+                span.style.left = `${posX}%`;
+                span.style.animationDuration = `${duration}s`;
+                span.style.background = `rgba(${Math.random() * 255}, ${Math.random() * 255}, 150, 0.5)`;
+                
+                animationContainer.appendChild(span);
+            }
+        }
+        createAnimation();
+    
+    </script>
+</body>
+</html>
