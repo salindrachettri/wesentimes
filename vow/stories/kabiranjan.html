@@ -570,24 +570,7 @@
                 navLinks.classList.toggle("active");
             });
         });
-        function createAnimation() {
-            const animationContainer = document.querySelector('.background-animation');
-            for (let i = 0; i < 80; i++) {
-                let span = document.createElement('span');
-                let size = Math.random() * 15 + 5;
-                let duration = Math.random() * 5 + 2;
-                let posX = Math.random() * 100;
-                
-                span.style.width = `${size}px`;
-                span.style.height = `${size}px`;
-                span.style.left = `${posX}%`;
-                span.style.animationDuration = `${duration}s`;
-                span.style.background = `rgba(${Math.random() * 255}, ${Math.random() * 255}, 150, 0.5)`;
-                
-                animationContainer.appendChild(span);
-            }
-        }
-        createAnimation();
+       
     
     </script>
 </body>
