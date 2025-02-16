@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vanguards of Wesea</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Playfair Display', serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #f5f5f5;
+            overflow-x: hidden;
+            color: #333;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 20px; 
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(15px);
+            transition: 0.3s ease-in-out;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 50px;
+        }
+
+        .navbar .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1e4497;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff4d4d;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #1e4497;
+            background-color: transparent;
+            border: none;
+            z-index: 1001;
+        }
+
+        .menu-toggle .bar {
+            display: block;
+            width: 30px;
+            height: 3px;
+            background-color: #1e4497;
+            margin: 6px 0;
+            border-radius: 5px;
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+
+        .menu-toggle.open .bar:nth-child(1) {
+            transform: rotate(45deg);
+            top: 9px;
+        }
+
+        .menu-toggle.open .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.open .bar:nth-child(3) {
+            transform: rotate(-45deg);
+            top: -9px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.9);
+                text-align: center;
+                padding: 1rem 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: url('https://easternroutes.com/wp-content/uploads/2018/12/Hornbill_Festival_Nagaland_India-1.jpg') no-repeat center center/cover;
+            color: white;
+            position: relative;
+            padding: 20px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .stories {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: #fff;
+        }
+
+        .stories h2 {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            color: #ff4d4d;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .story-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+
+        .story-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .story-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .story-card img {
+            width: 100%;
+            border-radius: 12px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .story-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .story-card h3 {
+            font-size: 1.8rem;
+            margin: 15px 0;
+            color: #1e4497;
+        }
+
+        .story-card p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 15px;
+        }
+        .story-card a {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            background: #ff4d4d;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .story-card a:hover {
+            background: #cc0000;
+            transform: scale(1.1);
+        }
+
+        .story-card a:active {
+            transform: scale(1);
+        }
+
+        .view-all-container {
+            margin-top: 30px;
+        }
+
+        .view-all-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #007bff, #0056b3);
+            color: white;
+            font-size: 1em;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s ease, transform 0.2s;
+        }
+
+        .view-all-button:hover {
+            background: linear-gradient(135deg, #0056b3, #003d7a);
+            transform: scale(1.05);
+        }
+
+        .footer {
+            background: #222;
+            color: white;
+            padding: 3rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            text-align: left;
+        }
+
+        .footer .about {
+            flex: 1;
+        }
+
+        .footer .quick-links {
+            flex: 1;
+            text-align: right;
+        }
+
+        .footer .location {
+            flex: 1;
+            text-align: center;
+        }
+
+        .footer .quick-links a {
+            display: block;
+            color: #ff4d4d;
+            text-decoration: none;
+            margin-bottom: 5px;
+        }
+
+        .footer .quick-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Vanguards of Wesea</div>
+        <div class="menu-toggle">☰</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="vow/stories.html">Stories</a></li>
+            <li><a href="vow/about.html">About</a></li>
+            <li><a href="index.html">Wesean Times</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>For a United Wesea</h1>
+            <h2>The Youths of Wesea</h2>
+            <p>Discover and explore the inspiring stories of young leaders, both past and present, under the age of 30, who have made a remarkable difference in Wesea.</p>
+        </div>
+    </section>
+
+    <section class="stories" id="stories">
+        <h2>Featured Personalities</h2>
+        <div class="story-grid">
+            <div class="story-card">
+                <img src="https://i0.wp.com/raiot.in/wp-content/uploads/2020/05/100757710_263413424775177_8294107191795777536_n.jpg?resize=720%2C960&ssl=1" alt="Story 1">
+                <h3>A Rebel's Ink</h3>
+                <p>Meet assam's rebel poet and child prodigy, known for his revolutionary writings</p>
+                <a href="vow/stories/kabiranjan.html">Read More</a>
+            </div>
+            <div class="story-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIC25nqru3yN9lhtoTwdBWt_u0QlOcPzw3Bw&s" alt="Story 1">
+                <h3>A Vision for Change</h3>
+                <p>Meet a young activist shaping the future.</p>
+                <a href="#">Read More</a>
+            </div>
+            <div class="story-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIC25nqru3yN9lhtoTwdBWt_u0QlOcPzw3Bw&s" alt="Story 1">
+                <h3>A Vision for Change</h3>
+                <p>Meet a young activist shaping the future.</p>
+                <a href="#">Read More</a>
+            </div>
+            <div class="story-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIC25nqru3yN9lhtoTwdBWt_u0QlOcPzw3Bw&s" alt="Story 1">
+                <h3>A Vision for Change</h3>
+                <p>Meet a young activist shaping the future.</p>
+                <a href="#">Read More</a>
+            </div>
+            <div class="story-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIC25nqru3yN9lhtoTwdBWt_u0QlOcPzw3Bw&s" alt="Story 1">
+                <h3>A Vision for Change</h3>
+                <p>Meet a young activist shaping the future.</p>
+                <a href="#">Read More</a>
+            </div>
+            <div class="story-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIC25nqru3yN9lhtoTwdBWt_u0QlOcPzw3Bw&s" alt="Story 1">
+                <h3>A Vision for Change</h3>
+                <p>Meet a young activist shaping the future. Can expand this to include more about the person yk</p>
+                <a href="#">Read More</a>
+            </div>
+        </div>
+        <div class="view-all-container">
+            <a href="#" class="view-all-button">View All Biographies</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="about">
+            <h3>About</h3>
+            <p>Wesean Changemakers is a platform dedicated to highlighting young leaders making a difference in their communities.</p>
+        </div>
+        <div class="location">
+            <h3>Location</h3>
+            <p>123 random idk Street, Wesea</p>
+        </div>
+        <div class="quick-links">
+            <h3>Quick Links</h3>
+            <a href="vow/about.html">About</a>
+            <a href="mailto:whsf.enquiry@proton.me">Contact</a>
+        </div>
+    </footer>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const menuToggle = document.querySelector(".menu-toggle");
+        const navLinks = document.querySelector(".nav-links");
+
+        menuToggle.addEventListener("click", function () {
+            navLinks.classList.toggle("active");
+        });
+    });
+</script>
+
+</html>
