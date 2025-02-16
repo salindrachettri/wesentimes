@@ -440,16 +440,18 @@
     <script>
         const stories = [
         { 
-            title: <a href="https://theweseantimes.ink/vow/stories/kabiranjan.html"> "A Rebel's Ink: Kabiranjan Saikia"</a>, 
+            title: "A Rebel's Ink: Kabiranjan Saikia", 
             author: "Kiron Chemsong", 
             desc: "Meet assam's rebel poet and child prodigy, known for his revolutionary writings.", 
-            img: "https://i0.wp.com/raiot.in/wp-content/uploads/2020/05/100757710_263413424775177_8294107191795777536_n.jpg?resize=720%2C960&ssl=1" 
+            img: "https://i0.wp.com/raiot.in/wp-content/uploads/2020/05/100757710_263413424775177_8294107191795777536_n.jpg?resize=720%2C960&ssl=1",
+            keyword: "kabiranjan"
         },
         { 
-            title: <a href="https://theweseantimes.ink/vow/stories/kaito.html"> "Kaito Sukhai: Youngest Military General" </a>, 
+            title: "Kaito Sukhai: Youngest Military General", 
             author: "Zhokhoi Liezietsu", 
             desc: "Meet General Kaito Sukhai, born on May 22, 1933, in Ghukhuyi village, Nagaland. At just 22, he became the youngest general in the world, leading the Naga Safe Guards during the Naga independence struggle. Known for his strategic brilliance and fearless leadership, Kaito played a key role in pivotal battles against Indian forces. His legacy as a youth leader and revolutionary icon continues to inspire the Naga movement.", 
             img: "https://www.thenagarepublic.com/wp-content/uploads/2019/08/20190804_140943-1-e1564910079764.jpg" 
+            keyword: "kaito"
         },
         { 
             title: "Empowering Communities", 
@@ -484,7 +486,7 @@
                     <h3>${story.title}</h3>
                     <p><strong>By ${story.author}</strong></p>
                     <p>${story.desc}</p>
-                    <a href="stories/kabiranjan.html" class="read-more" onclick="openStory('${story.title}', '${story.fullStory}')">Read More →</a>
+                    <a href="https://theweseantimes.ink/vow/stories/${story.keyword}.html" class="read-more" target="_blank">Read More →</a>
                 </div>
             `;
         });
