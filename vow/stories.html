@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Changemakers' Stories</title>
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Playfair Display', serif;
+            scroll-behavior: smooth;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 20px; 
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(15px);
+            transition: 0.3s ease-in-out;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 50px;
+        }
+
+        .navbar .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1e4497;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff4d4d;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.9);
+                text-align: center;
+                padding: 1rem 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+            text-align: center;
+        }
+
+        .parallax {
+            background: url('https://www.pettitts.co.uk/img/containers/assets/destinations/1-indian-subcontinent/1-india/8-north-east-india/assam-tea-plantations-banner.webp/4e4815a9fa4cd1cdf862b1f26c9607dc/assam-tea-plantations-banner.webp') no-repeat center center/cover;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .header-content {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px 40px;
+            border-radius: 12px;
+            backdrop-filter: blur(8px);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .header-content h1 {
+            font-size: 2.5em;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+            color: #fff;
+        }
+
+        .header-content p {
+            font-size: 1.2em;
+            color: #f9f9f9;
+        }
+
+        .stories-container {
+            max-width: 1200px;
+            margin: 50px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            position: relative;
+        }
+
+        .story-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .story-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .story-card img {
+            width: 100%;
+            max-height: 250px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .story-text {
+            flex: 1;
+        }
+
+        .story-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .story-card p {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .read-more {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #ff4d4d, #ff8c00);
+            color: white;
+            font-size: 1.1em;
+            padding: 14px 24px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .read-more:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .pagination {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pagination button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            margin: 0 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .pagination button:hover {
+            background-color: #0056b3;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1500;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            text-align: left;
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .close-modal:hover {
+            color: black;
+        }
+
+        .background-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+        .background-animation {
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 2000; 
+            pointer-events: none; 
+        }
+
+        .background-animation span {
+            position: absolute;
+            display: block;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 0, 150, 0.5);
+            border-radius: 50%;
+            animation: pourEffect 10s linear infinite;
+            opacity: 10000;
+        }
+
+        @keyframes pourEffect {
+            0% {
+                transform: translateY(-100vh) scale(0.5);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        .footer {
+            background: #222;
+            color: white;
+            padding: 3rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            text-align: left;
+        }
+
+        .footer .about {
+            flex: 1;
+        }
+
+        .footer .quick-links {
+            flex: 1;
+            text-align: right;
+        }
+
+        .footer .location {
+            flex: 1;
+            text-align: center;
+        }
+
+        .footer .quick-links a {
+            display: block;
+            color: #ff4d4d;
+            text-decoration: none;
+            margin-bottom: 5px;
+        }
+
+        .footer .quick-links a:hover {
+            text-decoration: underline;
+        }
+
+        .search-bar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 30px auto;
+        width: 90%;
+        max-width: 600px;
+        background: white;
+        padding: 12px 20px;
+        border-radius: 50px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        position: relative;
+    }
+
+    .search-bar input {
+        flex: 1;
+        border: none;
+        outline: none;
+        font-size: 1.2em;
+        padding: 10px;
+        border-radius: 50px;
+        background: transparent;
+    }
+
+    .search-icon {
+        font-size: 1.5em;
+        color: #ff4d4d;
+        cursor: pointer;
+        padding-left: 10px;
+    }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">Vanguards of Wesea</div>
+        <div class="menu-toggle">☰</div>
+        <ul class="nav-links">
+            <li><a href="vow.html">Home</a></li>
+            <li><a href="#stories">Stories</a></li>
+            <li><a href="vow/about.html">About</a></li>
+            <li><a href="index.html">Wesean Times</a></li>
+        </ul>
+    </nav>
+
+    <header class="parallax">
+        <div class="header-content">
+            <h1>Changemakers Who Inspire</h1>
+            <p>Discover the stories of people making a difference.</p>
+        </div>
+    </header>
+
+    <div class="background-animation"></div>
+    
+    <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Search Biographies or Search by Author..." onkeyup="searchStories()">
+        <span class="search-icon">🔍</span>
+    </div>
+
+    <div class="stories-container" id="stories">
+        <!-- Well basically what this would do is that ny content, will appear here -->
+    </div>
+
+    <div class="pagination">
+        <button id="prevPage" onclick="changePage(-1)">❮ Prev</button>
+        <span id="pageNumber">1</span>
+        <button id="nextPage" onclick="changePage(1)">Next ❯</button>
+    </div>
+
+    <footer class="footer">
+        <div class="about">
+            <h3>About</h3>
+            <p>Wesean Changemakers is a platform dedicated to highlighting young leaders making a difference in their communities.</p>
+        </div>
+        <div class="location">
+            <h3>Location</h3>
+            <p>123 random idk Street, Wesea</p>
+        </div>
+        <div class="quick-links">
+            <h3>Quick Links</h3>
+            <a href="vow/about.html">About</a>
+            <a href="mailto:whsf.enquiry@proton.me">Contact</a>
+        </div>
+    </footer>
+
+    <script>
+        const stories = [
+        { 
+            title: "A Rebel's Ink", 
+            author: "Kiron Chemsong", 
+            desc: "Meet assam's rebel poet and child prodigy, known for his revolutionary writings.", 
+            img: "https://i0.wp.com/raiot.in/wp-content/uploads/2020/05/100757710_263413424775177_8294107191795777536_n.jpg?resize=720%2C960&ssl=1" 
+        },
+        { 
+            title: "Breaking Barriers", 
+            author: "ABS", 
+            desc: "Innovating for a better tomorrow.", 
+            fullStory: "This is the full story of someone breaking barriers and driving change.", 
+            img: "https://source.unsplash.com/600x400/?innovation" 
+        },
+        { 
+            title: "Empowering Communities", 
+            author: "XYZ", 
+            desc: "Creating impact through education.", 
+            fullStory: "This is the full story of an individual transforming communities through education.", 
+            img: "https://source.unsplash.com/600x400/?education" 
+        },
+        { 
+            title: "Championing Diversity", 
+            author: "ABC", 
+            desc: "Celebrating inclusivity and culture.", 
+            fullStory: "This is the full story of someone championing diversity in their community.", 
+            img: "https://source.unsplash.com/600x400/?diversity" 
+        }
+    ];
+
+    let currentPage = 1;
+    const storiesPerPage = 2;
+
+    function displayStories() {
+        const container = document.getElementById("stories");
+        container.innerHTML = "";
+        
+        let start = (currentPage - 1) * storiesPerPage;
+        let end = start + storiesPerPage;
+        
+        stories.slice(start, end).forEach(story => {
+            container.innerHTML += `
+                <div class="story-card">
+                    <img src="${story.img}" alt="${story.title}">
+                    <h3>${story.title}</h3>
+                    <p><strong>By ${story.author}</strong></p>
+                    <p>${story.desc}</p>
+                    <a href="#" class="read-more" onclick="openStory('${story.title}', '${story.fullStory}')">Read More →</a>
+                </div>
+            `;
+        });
+    }
+
+    function changePage(step) {
+        if (currentPage + step > 0 && (currentPage + step - 1) * storiesPerPage < stories.length) {
+            currentPage += step;
+            displayStories();
+            document.getElementById("pageNumber").innerText = currentPage;
+        }
+    }
+
+    displayStories();
+
+    function createAnimation() {
+        const animationContainer = document.querySelector('.background-animation');
+        for (let i = 0; i < 80; i++) {
+            let span = document.createElement('span');
+            let size = Math.random() * 15 + 5;
+            let duration = Math.random() * 5 + 2;
+            let posX = Math.random() * 100;
+            
+            span.style.width = `${size}px`;
+            span.style.height = `${size}px`;
+            span.style.left = `${posX}%`;
+            span.style.animationDuration = `${duration}s`;
+            span.style.background = `rgba(${Math.random() * 255}, ${Math.random() * 255}, 150, 0.5)`;
+            
+            animationContainer.appendChild(span);
+        }
+    }
+    createAnimation();
+
+
+    function searchStories() {
+        let input = document.getElementById("searchInput").value.toLowerCase();
+        let stories = document.getElementsByClassName("story-card");
+        
+        for (let i = 0; i < stories.length; i++) {
+            let title = stories[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
+            let author = stories[i].getElementsByTagName("p")[0].innerText.toLowerCase();
+            
+            if (title.includes(input) || author.includes(input)) {
+                stories[i].style.display = "block";
+            } else {
+                stories[i].style.display = "none";
+            }
+        }
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+        const menuToggle = document.querySelector(".menu-toggle");
+        const navLinks = document.querySelector(".nav-links");
+
+        menuToggle.addEventListener("click", function () {
+            navLinks.classList.toggle("active");
+        });
+    });
+    </script>
+
+</body>
+</html>
