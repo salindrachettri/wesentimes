@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Title -->
+    <title>Wesean Times | Full News Article</title>
+
+    <!-- Meta (SEO) -->
+    <meta name="description" content="Wesean Times: Stay updated with the latest news, politics, and environment stories from Wesea.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/img/fav.png" sizes="16x16" />
+
+    <!-- Bootstrap 5 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <!-- Font & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+    <!-- ====== Start Navbar ====== -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/img/logo_home1.png" alt="Wesean Times Logo" height="50">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarMenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Politics</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Environment</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Technology</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- ====== End Navbar ====== -->
+
+    <!-- ====== Start News Article ====== -->
+    <section class="container py-5">
+        <div class="row">
+            <!-- Article Content -->
+            <div class="col-lg-8">
+                <h1 class="article-title">Wesea’s Growing Role in Environmental Conservation</h1>
+                <div class="meta text-muted mb-3">
+                    <span><i class="fa fa-user"></i> By John Doe</span> |
+                    <span><i class="fa fa-clock"></i> February 27, 2025</span>
+                </div>
+                <img src="assets/img/article-image.jpg" alt="Environmental Conservation" class="img-fluid mb-4" loading="lazy">
+
+                <p><strong>Wesea’s environmental landscape is undergoing a transformation as grassroots movements push for sustainable development.</strong></p>
+
+                <h3>Community-Led Conservation Efforts</h3>
+                <p>Local communities have introduced sustainable agriculture and eco-tourism projects aimed at preserving biodiversity.</p>
+
+                <h3>Government and Policy Changes</h3>
+                <p>The government has recently implemented policies encouraging afforestation and renewable energy use.</p>
+
+                <blockquote class="blockquote">
+                    <p>“Our forests are our heritage, and we must protect them for future generations.” – Dr. Arun Meitei.</p>
+                </blockquote>
+
+                <h3>Challenges and Future Prospects</h3>
+                <p>Despite progress, deforestation and industrial pollution remain major concerns.</p>
+            </div>
+
+            <!-- Sidebar: Related Articles -->
+            <div class="col-lg-4">
+                <div class="related-articles">
+                    <h3>Related Articles</h3>
+                    <ul>
+                        <li><a href="#">Wesea's Solar Energy Boom</a></li>
+                        <li><a href="#">How Local Farmers are Fighting Climate Change</a></li>
+                        <li><a href="#">New Wildlife Protection Laws Explained</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ====== End News Article ====== -->
+
+    <!-- ====== Start Comment Section ====== -->
+    <section class="container my-5">
+        <h3>Leave a Comment</h3>
+        <form id="comment-form">
+            <div class="mb-3">
+                <label for="comment-name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="comment-name" required>
+            </div>
+            <div class="mb-3">
+                <label for="comment-text" class="form-label">Comment</label>
+                <textarea class="form-control" id="comment-text" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Post Comment</button>
+        </form>
+
+        <!-- Comments Display -->
+        <div id="comments-container" class="mt-4">
+            <h4>Comments</h4>
+            <ul id="comments-list" class="list-group">
+                <!-- Comments will be appended here -->
+            </ul>
+        </div>
+    </section>
+    <!-- ====== End Comment Section ====== -->
+
+    <!-- ====== Start Footer ====== -->
+    <footer class="text-center py-4 bg-light">
+        <p>&copy; 2025 Wesean Times. All rights reserved.</p>
+    </footer>
+    <!-- ====== End Footer ====== -->
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
