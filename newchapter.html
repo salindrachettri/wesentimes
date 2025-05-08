@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>WHSF Chapter President Registration</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #fff1f0, #ffe7d9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .form-container {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      width: 320px;
+      text-align: center;
+    }
+    h2 {
+      color: #b34700;
+      margin-bottom: 1rem;
+    }
+    input, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1em;
+    }
+    textarea {
+      resize: none;
+    }
+    button {
+      background-color: #e67300;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #cc5c00;
+    }
+    .thank-you {
+      font-size: 1.2em;
+      color: #006600;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <form id="presidentForm">
+      <h2>WHSF Chapter President</h2>
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email Address" required>
+      <input type="text" placeholder="School / Chapter Name" required>
+      <textarea rows="3" placeholder="Why do you want to be a president?" required></textarea>
+      <button type="submit">Apply Now</button>
+    </form>
+    <div class="thank-you" id="thankYou">Thank you for registering as a Chapter President!</div>
+  </div>
+
+  <script>
+    document.getElementById('presidentForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      this.style.display = 'none';
+      document.getElementById('thankYou').style.display = 'block';
+    });
+  </script>
+</body>
+</html>
