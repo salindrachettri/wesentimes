@@ -55,12 +55,12 @@
 </head>
 <body>
   <div class="form-container">
-    <form id="presidentForm" action="https://formsubmit.co/zoeyelliekyoko@gmail.com" method="POST">
+    <form id="presidentForm">
       <h2>WHSF Chapter President</h2>
-      <input type="text" placeholder="Full Name" required>
-      <input type="email" placeholder="Email Address" required>
-      <input type="text" placeholder="School / Chapter Name" required>
-      <textarea rows="3" placeholder="Why do you want to be a president?" required></textarea>
+      <input type="text" name="name" placeholder="Full Name" required>
+      <input type="email" name="email" placeholder="Email Address" required>
+      <input type="text" name="chapter" placeholder="School / Chapter Name" required>
+      <textarea name="reason" rows="3" placeholder="Why do you want to be a president?" required></textarea>
       <button type="submit">Apply Now</button>
     </form>
     <div class="thank-you" id="thankYou">Thank you for registering as a Chapter President!</div>
@@ -69,8 +69,23 @@
   <script>
     document.getElementById('presidentForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      this.style.display = 'none';
-      document.getElementById('thankYou').style.display = 'block';
+
+      const form = this;
+      const formData = new FormData(form);
+
+      fetch("https://formsubmit.co/zoeyelliekyoko@gmail.com", {
+        method: "POST",
+        body: formData
+      }).then(response => {
+        if (response.ok) {
+          form.style.display = 'none';
+          document.getElementById('thankYou').style.display = 'block';
+        } else {
+          alert('Something went wrong. Please try again.');
+        }
+      }).catch(error => {
+        alert('Error submitting form: ' + error.message);
+      });
     });
   </script>
 </body>
