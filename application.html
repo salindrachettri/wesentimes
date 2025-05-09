@@ -48,26 +48,40 @@
 </head>
 <body>
   <div class="form-container">
-    <form id="newsForm">
+    <form action="https://formspree.io/f/your_form_id_here" method="POST" id="newsForm">
       <h2>Register for Our Newspaper</h2>
-      <input type="text" placeholder="Full Name" required>
-      <input type="email" placeholder="Email Address" required>
-      <select required>
+      <input type="text" name="Full Name" placeholder="Full Name" required>
+      <input type="email" name="Email" placeholder="Email Address" required>
+      <select name="Subscription Type" required>
         <option value="">Subscription Type</option>
         <option>Daily</option>
         <option>Weekly</option>
         <option>Monthly</option>
       </select>
+
       <button type="submit">Subscribe</button>
     </form>
     <div class="thank-you" id="thankYou">Thank you for subscribing!</div>
   </div>
 
   <script>
+    // Optional: If you want an instant thank-you message without redirect
     document.getElementById('newsForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      this.style.display = 'none';
-      document.getElementById('thankYou').style.display = 'block';
+      fetch(this.action, {
+        method: 'POST',
+        body: new FormData(this),
+        headers: { 'Accept': 'application/json' }
+      }).then(response => {
+        if (response.ok) {
+          this.style.display = 'none';
+          document.getElementById('thankYou').style.display = 'block';
+        } else {
+          alert("There was an error. Please try again.");
+        }
+      }).catch(error => {
+        alert("There was an error. Please try again.");
+      });
     });
   </script>
 </body>
